@@ -1,0 +1,32 @@
+{
+  "name": "pulumi-blueprints-ts",
+  "version": "0.0.1",
+  "description": "A collection of Pulumi Resource Components + Blueprints",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/saniales/pulumi-blueprints-ts.git"
+  },
+  "keywords": [
+    "pulumi",
+    "aws",
+    "blueprints",
+    "iac"
+  ],
+  "author": "Alessandro Sanino <alessandro@sanino.dev>",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/saniales/pulumi-blueprints-ts/issues"
+  },
+  "homepage": "https://github.com/saniales/pulumi-blueprints-ts#readme",
+  "devDependencies": {
+    "@pulumi/pulumi": "^3.127.0",
+    "@types/node": "^20.14.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
