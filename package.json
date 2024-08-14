@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "lint": "eslint .",
     "prepublish": "tsc"
   },
   "repository": {
@@ -24,9 +25,14 @@
   },
   "homepage": "https://github.com/saniales/pulumi-blueprints-ts#readme",
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@pulumi/aws": "^6.49.0",
     "@pulumi/pulumi": "^3.127.0",
+    "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.12",
+    "eslint": "^9.9.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.1.0"
   }
 }
