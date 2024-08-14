@@ -1,12 +1,15 @@
 {
-  "name": "pulumi-blueprints-ts",
+  "name": "@saniales/pulumi-blueprints-ts",
   "version": "0.0.1",
   "description": "A collection of Pulumi Resource Components + Blueprints",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "lint": "eslint .",
-    "prepublish": "tsc"
+    "prepublishOnly": "tsc && yarn lint"
   },
   "repository": {
     "type": "git",
@@ -24,10 +27,12 @@
     "url": "https://github.com/saniales/pulumi-blueprints-ts/issues"
   },
   "homepage": "https://github.com/saniales/pulumi-blueprints-ts#readme",
+  "dependencies" : {
+    "@pulumi/aws": "^6.49.0",
+    "@pulumi/pulumi": "^3.127.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
-    "@pulumi/aws": "^6.49.0",
-    "@pulumi/pulumi": "^3.127.0",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.12",
     "eslint": "^9.9.0",
