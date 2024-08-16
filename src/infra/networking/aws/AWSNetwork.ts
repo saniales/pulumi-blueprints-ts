@@ -22,7 +22,7 @@ interface AWSNetworkArgs {
 
 class AWSNetwork extends ComponentResource {
     private static readonly alphabet = "abcdefghijklmnopqrstuvwxyz";
-    private static defaultArgs: AWSNetworkArgs = {
+    private static readonly defaultArgs: AWSNetworkArgs = {
         region: process.env.AWS_REGION || "eu-central-1",
         vpc: {
             cidrBlock: "10.0.0.0/16",
@@ -34,9 +34,6 @@ class AWSNetwork extends ComponentResource {
     };
 
     public readonly name: string;
-    
-    private readonly args: AWSNetworkArgs;
-
     public readonly vpc: Vpc;
     public readonly routeTable: RouteTable;
     public readonly subnets: Subnet[];
@@ -47,7 +44,7 @@ class AWSNetwork extends ComponentResource {
         super("infra:networking:aws-network", name, {}, opts);
 
         this.name = name;
-        this.args = {
+        const actualArgs = {
             ...AWSNetwork.defaultArgs,
             ...args,
             vpc: {
@@ -62,7 +59,7 @@ class AWSNetwork extends ComponentResource {
 
         const vpcName = `${name}-vpc`;
         this.vpc = new Vpc(vpcName, {
-            ...this.args.vpc,
+            ...actualArgs.vpc,
             tags: {
                 "Name": vpcName,
             },
@@ -74,7 +71,7 @@ class AWSNetwork extends ComponentResource {
         this.routeTable = new RouteTable(routeTableName, {
             vpcId: this.vpc.id,
             tags: {
-                ...this.args.tags,
+                ...actualArgs.tags,
                 "Name": routeTableName,
             },
         }, {
@@ -90,14 +87,14 @@ class AWSNetwork extends ComponentResource {
         this.subnets = [];
         this.routeTableAssociations = [];
         
-        for (let i = 0; i < this.args.numberOfSubnets; i++) {
+        for (let i = 0; i < actualArgs.numberOfSubnets; i++) {
             const subnetName = `${name}-subnet-${i}`;
             const subnet = new Subnet(subnetName, {
                 vpcId: this.vpc.id,
                 cidrBlock: `10.0.${i}.0/24`,
-                availabilityZone: `${this.args.region}${AWSNetwork.alphabet[i]}`,
+                availabilityZone: `${actualArgs.region}${AWSNetwork.alphabet[i]}`,
                 tags: {
-                    ...this.args.tags,
+                    ...actualArgs.tags,
                     "Name": subnetName,
                 },
             }, {
@@ -128,7 +125,7 @@ class AWSNetwork extends ComponentResource {
         this.internetGateway = new InternetGateway(internetGatewayName, {
             vpcId: this.vpc.id,
             tags: {
-                ...this.args.tags,
+                ...actualArgs.tags,
                 "Name": internetGatewayName,
             },
         }, {
