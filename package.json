@@ -1,15 +1,11 @@
 {
   "name": "@saniales/pulumi-blueprints-ts",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "A collection of Pulumi Resource Components + Blueprints",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "/dist"
-  ],
   "scripts": {
     "lint": "eslint .",
-    "prepublishOnly": "tsc && yarn lint && yarn minify-all-js dist"
+    "preparePublish": "tsc && yarn lint && yarn minify-all-js dist",
+    "publishPackage": "bash ./publish.sh"
   },
   "repository": {
     "type": "git",
