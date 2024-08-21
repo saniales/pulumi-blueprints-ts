@@ -13,10 +13,6 @@
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true,
         "alwaysStrict": true,
-
-        "paths": {
-            "@/*": ["./src/*"]
-        }
     },
     "include": [
         "src/**/*"

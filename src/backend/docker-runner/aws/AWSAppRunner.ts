@@ -1,5 +1,5 @@
 import { ComponentResource, ComponentResourceOptions } from "@pulumi/pulumi";
-import { AWSNetwork, AWSNetworkArgs } from "@/infra/networking/aws/AWSNetwork";
+import { AWSNetwork, AWSNetworkArgs } from "../../../infra/networking/aws/AWSNetwork";
 
 interface AWSAppRunnerArgs {
     network? : AWSNetwork | null
