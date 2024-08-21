@@ -88,7 +88,7 @@ class AWSNetwork extends ComponentResource {
         this.routeTableAssociations = [];
         
         for (let i = 0; i < actualArgs.numberOfSubnets; i++) {
-            const subnetName = `${name}-subnet-${i}`;
+            const subnetName = `${name}-sub-${i}`;
             const subnet = new Subnet(subnetName, {
                 vpcId: this.vpc.id,
                 cidrBlock: `10.0.${i}.0/24`,
