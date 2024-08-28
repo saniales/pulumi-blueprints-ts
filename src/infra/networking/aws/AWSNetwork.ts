@@ -1,9 +1,9 @@
-import { 
+import {
     ComponentResource,
     ComponentResourceOptions
 } from "@pulumi/pulumi";
 
-import { 
+import {
     Vpc,
     VpcArgs,
     Subnet,
@@ -30,7 +30,7 @@ class AWSNetwork extends ComponentResource {
             enableDnsSupport: true,
         },
         numberOfSubnets: 3,
-        tags: { },
+        tags: {},
     };
 
     public readonly name: string;
@@ -44,6 +44,7 @@ class AWSNetwork extends ComponentResource {
         super("infra:networking:aws-network", name, {}, opts);
 
         this.name = name;
+
         const actualArgs = {
             ...AWSNetwork.defaultArgs,
             ...args,
@@ -86,7 +87,7 @@ class AWSNetwork extends ComponentResource {
 
         this.subnets = [];
         this.routeTableAssociations = [];
-        
+
         for (let i = 0; i < actualArgs.numberOfSubnets; i++) {
             const subnetName = `${name}-sub-${i}`;
             const subnet = new Subnet(subnetName, {
@@ -120,7 +121,7 @@ class AWSNetwork extends ComponentResource {
             subnetIds: this.subnets.map(subnet => subnet.id),
             routeTableAssociationIds: this.routeTableAssociations.map(rta => rta.id),
         });
-        
+
         const internetGatewayName = `${name}-igw`;
         this.internetGateway = new InternetGateway(internetGatewayName, {
             vpcId: this.vpc.id,
