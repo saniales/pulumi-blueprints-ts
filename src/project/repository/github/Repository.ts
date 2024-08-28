@@ -8,7 +8,7 @@ interface GithubRepositoryArgs {
         branches: string[]
     }
 
-    repository: {
+    repository: Partial<{
         description: string | null
         visibility: "public" | "private"
         homePageURL: string | null
@@ -20,20 +20,20 @@ interface GithubRepositoryArgs {
         } | null
 
         isTemplate: boolean
-    }
+    }>
 
     organization: {
         name: string
-        teams: string[]
+        teams?: string[]
     } | null
 
-    enabledFeatures: {
+    enabledFeatures: Partial<{
         issues: boolean
         discussions: boolean
         projects: boolean
         wiki: boolean
         securityAlerts: boolean
-    }
+    }>
 }
 
 /**
@@ -103,6 +103,10 @@ class GithubRepository extends ComponentResource {
         const actualArgs = {
             ...GithubRepository.defaultArgs,
             ...args,
+            git: {
+                ...GithubRepository.defaultArgs.git,
+                ...args.git,
+            },
             repository: {
                 ...GithubRepository.defaultArgs.repository,
                 ...args.repository,
@@ -182,9 +186,10 @@ class GithubRepository extends ComponentResource {
         this.environmentPolicies = [];
         for (const branch of actualArgs.git.branches) {
             const environmentName = `${name}-${branch}-environment`;
+            const environmentSlug = branch === "develop" ? "development" : branch === "main" || branch === "master" ? "production" : branch;
             const environment = new RepositoryEnvironment(environmentName, {
                 repository: this.repository.name,
-                environment: branch === "develop" ? "development" : branch,
+                environment: environmentSlug,
                 deploymentBranchPolicy: {
                     customBranchPolicies: true,
                     protectedBranches: false,
