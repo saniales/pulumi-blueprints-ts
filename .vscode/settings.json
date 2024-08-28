@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "networking",
-        "build"
+        "build",
+        "project"
     ]
 }

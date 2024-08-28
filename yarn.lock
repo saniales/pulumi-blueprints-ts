@@ -530,6 +530,13 @@
     mime "^2.0.0"
     resolve "^1.7.1"
 
+"@pulumi/github@^6.2.3":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@pulumi/github/-/github-6.2.3.tgz#8ffc07a39c6fbb1e9f7bca6c34a542943a7fe7d3"
+  integrity sha512-oDS7cxDhnZWu3MzE5Z9zGF0WQ6WAJlwVYrDZQcDELpNAZ1B3CRMBprxvgmKgnZkXQF3uDYp9DIDLwoim2AsMtw==
+  dependencies:
+    "@pulumi/pulumi" "^3.0.0"
+
 "@pulumi/pulumi@^3.0.0":
   version "3.129.0"
   resolved "https://registry.yarnpkg.com/@pulumi/pulumi/-/pulumi-3.129.0.tgz#540b9b065e33c27a92eab86daef36a407621a518"

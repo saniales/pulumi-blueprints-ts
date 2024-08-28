@@ -25,6 +25,7 @@
   "homepage": "https://github.com/saniales/pulumi-blueprints-ts#readme",
   "dependencies": {
     "@pulumi/aws": "^6.49.0",
+    "@pulumi/github": "^6.2.3",
     "@pulumi/pulumi": "^3.127.0"
   },
   "devDependencies": {
