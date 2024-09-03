@@ -26,7 +26,8 @@
   "dependencies": {
     "@pulumi/aws": "^6.49.0",
     "@pulumi/github": "^6.2.3",
-    "@pulumi/pulumi": "^3.127.0"
+    "@pulumi/pulumi": "^3.127.0",
+    "@pulumiverse/sentry": "^0.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

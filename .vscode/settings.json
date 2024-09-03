@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "networking",
         "build",
-        "project"
+        "project",
+        "monitoring"
     ]
 }
