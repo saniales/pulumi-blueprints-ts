@@ -3,8 +3,10 @@
   "version": "0.0.8",
   "description": "A collection of Pulumi Resource Components + Blueprints",
   "scripts": {
+    "build": "tsc",
     "lint": "eslint .",
-    "preparePublish": "tsc && yarn lint && yarn minify-all-js dist",
+    "minify-build": "yarn minify-all-js dist",
+    "preparePublish": "yarn build && yarn lint && yarn minify-build",
     "publishPackage": "bash ./publish.sh"
   },
   "repository": {
@@ -24,19 +26,21 @@
   },
   "homepage": "https://github.com/saniales/pulumi-blueprints-ts#readme",
   "dependencies": {
-    "@pulumi/aws": "^6.49.0",
-    "@pulumi/github": "^6.2.3",
-    "@pulumi/pulumi": "^3.127.0",
+    "@ediri/pulumi-fly": "^0.1.16",
+    "@pulumi/aws": "^6.56.1",
+    "@pulumi/cloudflare": "^5.41.0",
+    "@pulumi/github": "^6.3.2",
+    "@pulumi/pulumi": "^3.137.0",
     "@pulumiverse/sentry": "^0.0.8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.9.0",
+    "@eslint/js": "^9.13.0",
     "@types/eslint__js": "^8.42.3",
-    "@types/node": "^20.14.12",
-    "eslint": "^9.9.0",
+    "@types/node": "^22.8.0",
+    "eslint": "^9.13.0",
     "minify-all-js": "^0.1.9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.1.0"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.11.0"
   }
 }
