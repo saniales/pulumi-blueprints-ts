@@ -1,6 +1,6 @@
 {
   "name": "@saniales/pulumi-blueprints-ts",
-  "version": "0.0.8",
+  "version": "0.0.10-alpha.3",
   "description": "A collection of Pulumi Resource Components + Blueprints",
   "scripts": {
     "build": "tsc",
@@ -36,11 +36,11 @@
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@types/eslint__js": "^8.42.3",
-    "@types/node": "^22.8.0",
+    "@types/node": "^22.8.1",
     "eslint": "^9.13.0",
     "minify-all-js": "^0.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3",
-    "typescript-eslint": "^8.11.0"
+    "typescript-eslint": "^8.12.0"
   }
 }

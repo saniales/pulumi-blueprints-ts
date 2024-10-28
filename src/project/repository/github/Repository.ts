@@ -81,11 +81,11 @@ class GithubRepository extends ComponentResource {
     public readonly name: string;
     public readonly repository: Repository;
     
-    protected branchDefault: BranchDefault;
-    protected branches: Branch[];
-    protected environments: RepositoryEnvironment[];
-    protected environmentPolicies: RepositoryEnvironmentDeploymentPolicy[];
-    protected organizationTeams: TeamRepository[];
+    public readonly branchDefault: BranchDefault;
+    public readonly branches: Branch[];
+    public readonly environments: RepositoryEnvironment[];
+    public readonly environmentPolicies: RepositoryEnvironmentDeploymentPolicy[];
+    public readonly organizationTeams: TeamRepository[];
 
     /**
      * Creates a new Github repository and associated resources.
@@ -167,7 +167,6 @@ class GithubRepository extends ComponentResource {
                 sourceBranch: actualArgs.git.defaultBranch,
             }, {
                 parent: this.repository,
-                dependsOn: [this.repository],
             });
 
             this.branches.push(branch);
@@ -179,7 +178,7 @@ class GithubRepository extends ComponentResource {
             branch: actualArgs.git.defaultBranch,
         }, {
             parent: this.repository,
-            dependsOn: [this.repository],
+            dependsOn: this.branches,
         });
 
         this.environments = [];
@@ -195,18 +194,17 @@ class GithubRepository extends ComponentResource {
                     protectedBranches: false,
                 },
             }, {
+                dependsOn: [this.branchDefault],
                 parent: this.repository,
-                dependsOn: [this.repository, ...this.branches, this.branchDefault],
             });
 
             const environmentPolicyName = `${name}-${branch}-environment-policy`;
             const environmentPolicy = new RepositoryEnvironmentDeploymentPolicy(environmentPolicyName, {
                 repository: this.repository.name,
-                environment: branch === "develop" ? "development" : branch,
+                environment: environmentSlug,
                 branchPattern: branch,
             }, {
                 parent: environment,
-                dependsOn: [environment],
             });
             
             this.environments.push(environment);
@@ -223,7 +221,6 @@ class GithubRepository extends ComponentResource {
                     teamId: team,
                 }, {
                     parent: this.repository,
-                    dependsOn: [this.repository],
                 });
 
                 this.organizationTeams.push(teamRepository);
